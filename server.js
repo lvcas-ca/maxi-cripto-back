@@ -76,6 +76,11 @@ if (!dataNegative || !dataPositive) {
   });
 }
 
+// Ruta para la raíz
+app.get('/', (req, res) => {
+  res.send('Bienvenido a mi API de scraping');
+});
+
 // Ruta para iniciar el scraping manualmente
 app.get('/scrape', async (req, res) => {
   try {
