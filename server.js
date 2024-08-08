@@ -6,9 +6,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Variables para almacenar los datos en memoria
-let dataNegative = null;
-let dataPositive = null;
+// Middleware para servir archivos estáticos
+app.use('/src', express.static(path.join(__dirname, 'src')));
 
 const scrapeData = async () => {
   // Inicia el navegador y abre una nueva página
@@ -34,10 +33,10 @@ const scrapeData = async () => {
   };
 
   // Realiza el scraping y guarda los datos negativos CEDEAR
-  dataNegative = await page.evaluate(buildArray);
+  const dataNegative = await page.evaluate(buildArray);
   await page.click('text=Variación');
   // Realiza el scraping y guarda los datos positivos CEDEAR
-  dataPositive = await page.evaluate(buildArray);
+  const dataPositive = await page.evaluate(buildArray);
 
   // Escribe los datos en un archivo JSON
   fs.writeFileSync(path.join(__dirname, 'src', 'dataNegative.json'), JSON.stringify(dataNegative, null, 2));
@@ -61,8 +60,21 @@ const loadDataFromFiles = () => {
   }
 };
 
+// Variables para almacenar los datos en memoria
+let dataNegative = null;
+let dataPositive = null;
+
 // Carga los datos desde los archivos al iniciar el servidor
 loadDataFromFiles();
+
+// Realiza el scraping al iniciar el servidor si los archivos JSON no existen o están vacíos
+if (!dataNegative || !dataPositive) {
+  scrapeData().then(() => {
+    console.log('Datos iniciales cargados mediante scraping.');
+  }).catch(error => {
+    console.error('Error al realizar el scraping inicial:', error);
+  });
+}
 
 // Ruta para iniciar el scraping manualmente
 app.get('/scrape', async (req, res) => {
@@ -92,11 +104,6 @@ app.get('/dataPositive', (req, res) => {
   }
 });
 
-app.listen(PORT, async () => {
-  // Realiza el scraping al iniciar el servidor si los archivos JSON no existen
-  if (!dataNegative || !dataPositive) {
-    await scrapeData();
-  }
-
+app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
