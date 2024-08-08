@@ -6,6 +6,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Variables para almacenar los datos en memoria
+let dataNegative = null;
+let dataPositive = null;
+
 const scrapeData = async () => {
   // Inicia el navegador y abre una nueva página
   const browser = await chromium.launch();
@@ -30,10 +34,10 @@ const scrapeData = async () => {
   };
 
   // Realiza el scraping y guarda los datos negativos CEDEAR
-  const dataNegative = await page.evaluate(buildArray);
+  dataNegative = await page.evaluate(buildArray);
   await page.click('text=Variación');
   // Realiza el scraping y guarda los datos positivos CEDEAR
-  const dataPositive = await page.evaluate(buildArray);
+  dataPositive = await page.evaluate(buildArray);
 
   // Escribe los datos en un archivo JSON
   fs.writeFileSync(path.join(__dirname, 'src', 'dataNegative.json'), JSON.stringify(dataNegative, null, 2));
@@ -42,6 +46,23 @@ const scrapeData = async () => {
   // Cierra el navegador
   await browser.close();
 };
+
+// Función para cargar los datos desde los archivos JSON si existen
+const loadDataFromFiles = () => {
+  const dataNegativePath = path.join(__dirname, 'src', 'dataNegative.json');
+  const dataPositivePath = path.join(__dirname, 'src', 'dataPositive.json');
+
+  if (fs.existsSync(dataNegativePath)) {
+    dataNegative = JSON.parse(fs.readFileSync(dataNegativePath, 'utf-8'));
+  }
+
+  if (fs.existsSync(dataPositivePath)) {
+    dataPositive = JSON.parse(fs.readFileSync(dataPositivePath, 'utf-8'));
+  }
+};
+
+// Carga los datos desde los archivos al iniciar el servidor
+loadDataFromFiles();
 
 // Ruta para iniciar el scraping manualmente
 app.get('/scrape', async (req, res) => {
@@ -55,27 +76,27 @@ app.get('/scrape', async (req, res) => {
 
 // Ruta para obtener los datos negativos
 app.get('/dataNegative', (req, res) => {
-  const dataPath = path.join(__dirname, 'src', 'dataNegative.json');
-  if (fs.existsSync(dataPath)) {
-    const data = fs.readFileSync(dataPath, 'utf-8');
-    res.json(JSON.parse(data));
+  if (dataNegative) {
+    res.json(dataNegative);
   } else {
-    res.status(404).json({ error: 'Archivo dataNegative.json no encontrado' });
+    res.status(404).json({ error: 'Datos negativos no encontrados' });
   }
 });
 
 // Ruta para obtener los datos positivos
 app.get('/dataPositive', (req, res) => {
-  const dataPath = path.join(__dirname, 'src', 'dataPositive.json');
-  if (fs.existsSync(dataPath)) {
-    const data = fs.readFileSync(dataPath, 'utf-8');
-    res.json(JSON.parse(data));
+  if (dataPositive) {
+    res.json(dataPositive);
   } else {
-    res.status(404).json({ error: 'Archivo dataPositive.json no encontrado' });
+    res.status(404).json({ error: 'Datos positivos no encontrados' });
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  // Realiza el scraping al iniciar el servidor si los archivos JSON no existen
+  if (!dataNegative || !dataPositive) {
+    await scrapeData();
+  }
+
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
-
