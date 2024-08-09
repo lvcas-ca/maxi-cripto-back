@@ -1,102 +1,102 @@
 [
   {
-    "nombre": "TRIP",
-    "variacion": "-17,24%"
+    "nombre": "ORCLD",
+    "variacion": "-10,81%"
   },
   {
-    "nombre": "ABNB",
-    "variacion": "-14,15%"
+    "nombre": "YELP",
+    "variacion": "-7,38%"
   },
   {
-    "nombre": "RIOTD",
-    "variacion": "-13,59%"
+    "nombre": "PAAS",
+    "variacion": "-5,56%"
   },
   {
-    "nombre": "UNPD",
-    "variacion": "-11,26%"
+    "nombre": "ABNBD",
+    "variacion": "-5,35%"
   },
   {
-    "nombre": "HUT",
-    "variacion": "-10,24%"
+    "nombre": "CRMD",
+    "variacion": "-5,33%"
   },
   {
-    "nombre": "MSTR",
-    "variacion": "-9,81%"
+    "nombre": "UGP",
+    "variacion": "-5,16%"
   },
   {
-    "nombre": "FDXD",
-    "variacion": "-9,53%"
-  },
-  {
-    "nombre": "RIOT",
-    "variacion": "-8,94%"
-  },
-  {
-    "nombre": "BITF",
-    "variacion": "-8,75%"
-  },
-  {
-    "nombre": "COIN",
-    "variacion": "-8,33%"
-  },
-  {
-    "nombre": "MSTRD",
-    "variacion": "-8,20%"
-  },
-  {
-    "nombre": "BKNG",
-    "variacion": "-7,56%"
+    "nombre": "SATLD",
+    "variacion": "-5,07%"
   },
   {
     "nombre": "SATL",
-    "variacion": "-7,32%"
+    "variacion": "-4,58%"
   },
   {
-    "nombre": "SPCE",
-    "variacion": "-7,14%"
+    "nombre": "JMIAD",
+    "variacion": "-4,36%"
   },
   {
-    "nombre": "AMGN",
-    "variacion": "-6,63%"
+    "nombre": "GFI",
+    "variacion": "-4,34%"
   },
   {
-    "nombre": "BAD",
-    "variacion": "-6,37%"
+    "nombre": "UBERD",
+    "variacion": "-4,32%"
   },
   {
-    "nombre": "AVGO",
-    "variacion": "-6,35%"
+    "nombre": "ACN",
+    "variacion": "-4,04%"
   },
   {
-    "nombre": "KGC",
-    "variacion": "-6,31%"
+    "nombre": "GSKD",
+    "variacion": "-3,86%"
   },
   {
-    "nombre": "BITFD",
-    "variacion": "-6,28%"
+    "nombre": "JMIA",
+    "variacion": "-3,67%"
   },
   {
-    "nombre": "ANF",
-    "variacion": "-6,21%"
+    "nombre": "SDA",
+    "variacion": "-3,42%"
   },
   {
-    "nombre": "NVDAD",
-    "variacion": "-6,21%"
+    "nombre": "TXRD",
+    "variacion": "-2,96%"
   },
   {
-    "nombre": "NVDA",
-    "variacion": "-6,14%"
+    "nombre": "TMD",
+    "variacion": "-2,95%"
   },
   {
-    "nombre": "HAPV3",
-    "variacion": "-6,01%"
+    "nombre": "HSYD",
+    "variacion": "-2,63%"
   },
   {
-    "nombre": "CCL",
-    "variacion": "-5,82%"
+    "nombre": "GLOB",
+    "variacion": "-2,54%"
   },
   {
-    "nombre": "NG",
-    "variacion": "-5,77%"
+    "nombre": "FD",
+    "variacion": "-2,43%"
+  },
+  {
+    "nombre": "UNHD",
+    "variacion": "-2,29%"
+  },
+  {
+    "nombre": "CAH",
+    "variacion": "-2,03%"
+  },
+  {
+    "nombre": "PEPD",
+    "variacion": "-1,98%"
+  },
+  {
+    "nombre": "HMC",
+    "variacion": "-1,96%"
+  },
+  {
+    "nombre": "HON",
+    "variacion": "-1,95%"
   }
 ]
