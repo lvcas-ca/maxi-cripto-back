@@ -1,10 +1,14 @@
 const express = require('express');
 const { chromium } = require('playwright');
+const cors = require('cors');  // Importa el paquete cors
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Habilita CORS para todas las solicitudes
+app.use(cors());
 
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
