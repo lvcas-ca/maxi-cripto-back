@@ -71,7 +71,7 @@ const checkMarketOpenAndScrape = async () => {
   const currentHour = now.getHours();
   const currentDay = now.getDay();
 
-  if (currentDay >= 1 && currentDay <= 5 && currentHour >= 11 && currentHour < 17) {
+  if (currentDay >= 1 && currentDay <= 5 && ((currentHour >= 11 && currentHour < 24) || (currentHour >= 0 && currentHour < 3))) {
     console.log('El mercado está abierto. Realizando scraping...');
     await scrapeData();
     console.log('Datos actualizados.');
@@ -80,7 +80,7 @@ const checkMarketOpenAndScrape = async () => {
   }
 };
 
-setInterval(checkMarketOpenAndScrape, 60 * 60 * 1000);
+setInterval(checkMarketOpenAndScrape, 4 * 60 * 1000);
 
 app.get('/', (req, res) => {
   res.send('Bienvenido a mi API de scraping');
