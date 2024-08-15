@@ -4,6 +4,9 @@ FROM node:16
 # Añadir Playwright (usando la imagen oficial de Playwright basada en Ubuntu Focal)
 FROM mcr.microsoft.com/playwright:focal
 
+# Instalar Playwright con dependencias
+RUN npx playwright install --with-deps
+
 # Establecer el directorio de trabajo en la imagen
 WORKDIR /app
 
