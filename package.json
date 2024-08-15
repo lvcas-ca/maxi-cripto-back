@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "postinstall": "npn playwright install --with-deps"
+    "postinstall": "npm playwright install --with-deps"
   },
   "keywords": [],
   "author": "",
